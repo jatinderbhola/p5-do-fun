@@ -12,17 +12,17 @@ function setup() {
 
 var i = 0;
 var j = 0;
+var pick = 0;
 
 function draw() {
 	background(0);
-
-	// frameRate(0.4);
 
 	if (i < values.length) {
 		if (j < values.length - i - 1) {
 			//for (let j = 0; j < values.length - i - 1; j++) {
 			if (values[j] > values[j + 1]) {
 				swap(values, j, j + 1);
+				pick = j;
 			}
 			j++;
 		} else {
@@ -37,25 +37,16 @@ function draw() {
 
 
 	for (let i = 0; i < values.length; i++) {
+		if (i == pick) {
+			stroke(255, 204, 100);
+		}
 		stroke(255);
 		line(i, height, i, height - values[i]);
 	}
 
-	// values = bubbleSort(values);
-
 }
 
 
-// function bubbleSort(arr) {
-// 	for (let i = 0; i < arr.length; i++) {
-// 		for (let j = 0; j < arr.length - i - 1; j++) {
-// 			if (arr[j] > arr[j + 1]) {
-// 				arr = sort(arr, j, j + 1);
-// 			}
-// 		}
-// 	}
-// 	return arr;
-// }
 
 function swap(a, i, j) {
 	let temp = a[i];
