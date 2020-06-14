@@ -107,3 +107,46 @@ Complexity:
 Best-case performance	| O(n^2),
 Average performance	| O(n^2)
 Worst-case space complexity	|O(1)
+
+
+### Comb Sort 
+other names : bidirectional bubble sort, Cocktail sort, shaker sort, selection sort, ripple sort, suffle sort, shuttle sort
+
+```
+procedure cocktailShakerSort(A : list of sortable items) is
+    do
+        swapped := false
+        for each i in 0 to length(A) − 2 do:
+            if A[i] > A[i + 1] then // test whether the two elements are in the wrong order
+                swap(A[i], A[i + 1]) // let the two elements change places
+                swapped := true
+            end if
+        end for
+        if not swapped then
+            // we can exit the outer loop here if no swaps occurred.
+            break do-while loop
+        end if
+        swapped := false
+        for each i in length(A) − 2 to 0 do:
+            if A[i] > A[i + 1] then
+                swap(A[i], A[i + 1])
+                swapped := true
+            end if
+        end for
+    while swapped // if no elements have been swapped, then the list is sorted
+end procedure
+```
+Display :
+
+![Alt Text](https://upload.wikimedia.org/wikipedia/commons/4/46/Comb_sort_demo.gif)
+
+Complexity:
+
+
+|Class	| Sorting algorithm|
+|-------|-----|
+|Data structure|Array|
+|Worst-case performance |	O(n^2)|
+Best-case performance	| O(n logn),
+Average performance	| omega(n^2 / 2^p) where p is the number of increment
+Worst-case space complexity	|O(1)
