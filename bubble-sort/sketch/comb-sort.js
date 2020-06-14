@@ -1,6 +1,7 @@
-var values = [];
-var swapped = false;
-var start = end = 0;
+var values = [],
+	isSort = false,
+	gap = 0,
+	strink = 1.3;
 
 function setup() {
 	createCanvas(700, 300);
@@ -9,37 +10,28 @@ function setup() {
 		values[i] = parseFloat(random(height).toFixed(2));
 		// values[i] = noise(i / 100.2) * height;
 	}
-	console.log(values);
-	swapped = true;
-	start = 0;
-	end = values.length;
+
+	gap = values.length;
 }
 
 function draw() {
 	console.log('as');
 	background(0);
 
-	if (swapped) {
-		swapped = false;
+	frameRate(1);
+	if (gap != 1 || isSort == true) {
 
-		for (let ii = start; ii < end - 1; ii++) {
-			if (values[ii] > values[ii + 1]) {
-				swap(values, ii, (ii + 1));
-				swapped = true;
+		gap = parseInt(gap / strink);
+		gap < 1 && (gap = 1);
+		isSort = false;
+
+
+		for (let i = 0; i < values.length - gap; i++) {
+			if (values[i] > values[i + gap]) {
+				swap(values, i, (i + gap));
+				isSort = true;
 			}
 		}
-
-		if (!swapped) noLoop();
-		end = end - 1;
-
-		for (let ii = end - 1; ii >= start; ii--) {
-			if (values[ii] > values[ii + 1]) {
-				swap(values, ii, (ii + 1));
-				swapped = true;
-			}
-		}
-
-		start = start + 1;
 
 	} else {
 		noLoop();

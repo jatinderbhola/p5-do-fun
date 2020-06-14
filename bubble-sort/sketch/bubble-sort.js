@@ -15,35 +15,24 @@ var j = 0;
 var pick = 0;
 
 function draw() {
-	background(0);
+	background(222);
 
 	if (i < values.length) {
-		if (j < values.length - i - 1) {
-			//for (let j = 0; j < values.length - i - 1; j++) {
+		// if (j < values.length - i - 1) {
+		for (let j = 0; j < values.length - i - 1; j++) {
 			if (values[j] > values[j + 1]) {
 				swap(values, j, j + 1);
-				pick = j;
 			}
-			j++;
-		} else {
-			i++;
-			j = 0;
 		}
 	} else {
 		console.log("done");
 		console.log(values);
 		noLoop();
 	}
-
-
 	for (let i = 0; i < values.length; i++) {
-		if (i == pick) {
-			stroke(255, 204, 100);
-		}
-		stroke(255);
+		stroke(0);
 		line(i, height, i, height - values[i]);
 	}
-
 }
 
 
